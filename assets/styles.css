@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    color: #222;
+    background: #fafafa;
+}
+
+header {
+    padding: 24px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+h1 {
+    margin: 0 0 8px;
+}
+
+main {
+    max-width: 960px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+footer {
+    text-align: center;
+    padding: 16px;
+    color: #666;
+}
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.tab-btn {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.tab-btn.active {
+    background: #222;
+    color: #fff;
+    border-color: #222;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.panel {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.inline {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+input[type="url"],
+input[type="number"],
+textarea {
+    flex: 1 1 auto;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+button {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background: #f5f5f5;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #eee;
+}
+
+.dropzone {
+    border: 2px dashed #bbb;
+    padding: 24px;
+    text-align: center;
+    background: #fdfdfd;
+    color: #666;
+}
+
+.dropzone.dragover {
+    border-color: #222;
+    color: #222;
+    background: #f7f7f7;
+}
+
+.preview {
+    display: none;
+    max-width: 100%;
+}
+
+.status {
+    color: #555;
+    font-size: 0.9em;
+    margin-top: 8px;
+}
+
+.copyable {
+    padding: 12px;
+    background: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    min-height: 40px;
+    word-wrap: break-word;
+}
+
+.copyable:hover {
+    background: #f1f1f1;
+}
+
+.qr-output {
+    display: inline-block;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.qr-output canvas,
+.qr-output img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.preview-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 8px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+}

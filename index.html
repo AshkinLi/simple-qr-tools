@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Tools</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <!-- 外部依赖：纯前端运行，无需二次联网 -->
+    <!-- jsQR: 纯JS二维码解码 -->
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+    <!-- qrcodejs: 纯JS二维码生成 -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>QR Tools</h1>
+        <p>Local QR code encode/decode tools (URL content fetch excluded).</p>
+    </header>
+
+    <main>
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="decode">Decode</button>
+            <button class="tab-btn" data-tab="encode">Encode</button>
+        </nav>
+
+        <section id="tab-decode" class="tab-content active">
+            <h2>Decode QR Code</h2>
+            <div class="panel">
+                <h3>1) Import image from local</h3>
+                <input type="file" id="fileInput" accept="image/*" />
+            </div>
+
+            <div class="panel">
+                <h3>2) Import image from clipboard</h3>
+                <div id="pasteArea" class="dropzone" tabindex="0" aria-label="Paste or drag image here">Paste here
+                    (Cmd+V) or drag an image</div>
+                <button id="readClipboardBtn">Read image from clipboard (may require HTTPS)</button>
+            </div>
+
+            <div class="panel">
+                <h3>3) Import from image URL</h3>
+                <div class="inline">
+                    <input type="url" id="imageUrlInput" placeholder="Enter image URL, e.g. https://..." />
+                    <button id="loadImageUrlBtn">Load & Decode</button>
+                </div>
+                <p class="note">Note: Some sites disallow cross-origin pixel access; decoding may fail. Download the
+                    image and use local import instead.</p>
+            </div>
+
+            <div class="panel">
+                <h3>Decoded Result</h3>
+                <div id="decodeStatus" class="status"></div>
+                <div id="decodedText" class="copyable" title="Click to copy"></div>
+                <button id="copyDecodedBtn">Copy Result</button>
+                <img id="originalImage" class="preview-img" alt="Original Image Preview" />
+                <canvas id="previewCanvas" class="preview" width="0" height="0" aria-hidden="true"></canvas>
+            </div>
+        </section>
+
+        <section id="tab-encode" class="tab-content">
+            <h2>Generate QR Code</h2>
+            <div class="panel">
+                <h3>1) Enter any text to generate QR</h3>
+                <textarea id="encodeTextInput" rows="4" placeholder="Enter text to encode"></textarea>
+                <div class="inline">
+                    <label for="errorCorrection">Error correction:</label>
+                    <select id="errorCorrection">
+                        <option value="L">L (7%)</option>
+                        <option value="M" selected>M (15%)</option>
+                        <option value="Q">Q (25%)</option>
+                        <option value="H">H (30%)</option>
+                    </select>
+                    <label for="qrSize">Size:</label>
+                    <input type="number" id="qrSize" min="128" max="1024" value="256" />
+                    <button id="generateQrBtn">Generate QR</button>
+                </div>
+                <div id="qrOutput" class="qr-output"></div>
+            </div>
+
+            <div class="panel">
+                <h3>2) Enter URL, convert page body content to QR</h3>
+                <div class="inline">
+                    <input type="url" id="pageUrlInput" placeholder="Enter URL, e.g. https://example.com" />
+                    <button id="fetchPageBtn">Fetch & Generate</button>
+                </div>
+                <p class="note">Note: Fetching page content requires network; CORS may block some sites. If it fails,
+                    copy the desired content into the text box above.</p>
+                <div id="pageFetchStatus" class="status"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <small>© 2025 QR Tools — Dependencies: jsQR, qrcodejs. All features run locally except URL content
+            fetch.</small>
+    </footer>
+
+    <script src="./assets/app.js"></script>
+</body>
+
+</html>
