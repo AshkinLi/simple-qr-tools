@@ -1,6 +1,6 @@
 # QR Tools
 
-A pure frontend static site that provides QR code decoding and encoding. Except for fetching page content from a URL, all other features work locally and offline. Dependencies are loaded via CDN (jsQR, qrcodejs); they are pure JS and do not perform additional network requests.
+A pure frontend static site that provides QR code decoding and encoding. Except for fetching page content from a URL, all other features work locally and offline.
 
 ## PWA Support
 
@@ -10,15 +10,15 @@ This project includes basic PWA support to allow install and offline usage.
 - Offline: Static assets are cached on first load; subsequent visits work offline for local features.
 
 ### Files & Config
-- `manifest.webmanifest`: PWA manifest (name, theme color, display mode, icons).
-- `sw.js`: Service Worker for caching and offline.
-- `assets/icons/`: SVG placeholder icons (`icon-192.svg`, `icon-512.svg`, `icon-maskable.svg`).
+- `public/manifest.webmanifest`: PWA manifest (name, theme color, display mode, icons).
+- `public/sw.js`: Service Worker for caching and offline.
+- `public/icons/`: SVG placeholder icons (`icon-192.svg`, `icon-512.svg`, `icon-maskable.svg`).
 
 Note: For best installability (especially Chrome), replace SVG icons with PNGs:
 
-- 192x192 → `assets/icons/icon-192.png`
-- 512x512 → `assets/icons/icon-512.png`
-- Maskable 512x512 → `assets/icons/icon-maskable.png`
+- 192x192 → `public/icons/icon-192.png`
+- 512x512 → `public/icons/icon-512.png`
+- Maskable 512x512 → `public/icons/icon-maskable.png`
 
 Update `manifest.webmanifest` `icons` accordingly (set `type` to `image/png` and adjust `src`).
 
@@ -37,7 +37,7 @@ Update `manifest.webmanifest` `icons` accordingly (set `type` to `image/png` and
 Use a local HTTP server (Service Worker requires HTTPS or `http://localhost/`):
 
 ```zsh
-cd ./simple-qr-tools
+cd ./simple-qr-tools/public
 python3 -m http.server 8080
 # or, if installed: http-server -p 8080
 ```
@@ -62,11 +62,23 @@ Loaded via CDN:
 
 ## Directory Structure
 ```
-qr-tools/
-├─ index.html
-├─ assets/
-│  ├─ styles.css
-│  └─ app.js
+simple-qr-tools/
+├─ public/            # Static site root (deploy as webroot)
+│  ├─ index.html
+│  ├─ manifest.webmanifest
+│  ├─ sw.js
+│  └─ icons/
+│     ├─ icon-192.svg
+│     ├─ icon-512.svg
+│     └─ icon-maskable.svg
+├─ src/
+│  ├─ css/
+│  │  └─ styles.css
+│  └─ js/
+│     └─ app.js
+├─ libs/              # Third-party libs
+│  ├─ jsQR.js
+│  └─ qrcode.min.js
 └─ README.md
 ```
 
