@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b5fff" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icons/icon-192.svg" sizes="192x192" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.svg" />
     <title>QR Tools</title>
     <link rel="stylesheet" href="./assets/styles.css" />
     <!-- jsQR: for QRCode Decode -->
@@ -97,6 +101,13 @@
     </footer>
 
     <script src="./assets/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./assets/sw.js').catch(console.error);
+            });
+        }
+    </script>
 </body>
 
 </html>

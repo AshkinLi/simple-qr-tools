@@ -1,0 +1,31 @@
+{
+    "name": "Simple QR Tools",
+    "short_name": "QR Tools",
+    "description": "A simple QR code generator and recognition tool that supports offline use.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0b5fff",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "assets/icons/icon-192.svg",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "assets/icons/icon-512.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "assets/icons/icon-maskable.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "maskable"
+        }
+    ]
+}

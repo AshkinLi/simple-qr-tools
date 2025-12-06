@@ -2,6 +2,26 @@
 
 A pure frontend static site that provides QR code decoding and encoding. Except for fetching page content from a URL, all other features work locally and offline. Dependencies are loaded via CDN (jsQR, qrcodejs); they are pure JS and do not perform additional network requests.
 
+## PWA Support
+
+This project includes basic PWA support to allow install and offline usage.
+
+- Install: Browsers will show an "Install app" option when visiting the site.
+- Offline: Static assets are cached on first load; subsequent visits work offline for local features.
+
+### Files & Config
+- `manifest.webmanifest`: PWA manifest (name, theme color, display mode, icons).
+- `sw.js`: Service Worker for caching and offline.
+- `assets/icons/`: SVG placeholder icons (`icon-192.svg`, `icon-512.svg`, `icon-maskable.svg`).
+
+Note: For best installability (especially Chrome), replace SVG icons with PNGs:
+
+- 192x192 → `assets/icons/icon-192.png`
+- 512x512 → `assets/icons/icon-512.png`
+- Maskable 512x512 → `assets/icons/icon-maskable.png`
+
+Update `manifest.webmanifest` `icons` accordingly (set `type` to `image/png` and adjust `src`).
+
 ## Features
 - Decode
   - Import an image from local files and decode the QR code
@@ -14,16 +34,17 @@ A pure frontend static site that provides QR code decoding and encoding. Except 
 
 ## Usage
 
-Run with a local HTTP server to enable full browser capabilities:
+Use a local HTTP server (Service Worker requires HTTPS or `http://localhost/`):
 
 ```zsh
-cd /Users/ashkin/Developer/qr-tools
-python3 -m http.server 8000
+cd ./simple-qr-tools
+python3 -m http.server 8080
+# or, if installed: http-server -p 8080
 ```
 
-Open `http://localhost:8000/` in your browser.
+Open `http://localhost:8080/` in your browser.
 
-> Note: Opening via `file://` works for most features, but reading images directly from the clipboard typically requires HTTPS or a secure context. A local HTTP server is recommended.
+Note: Opening via `file://` works for most features, but clipboard image access usually needs a secure context.
 
 ## CORS Notes
 - "Import from image URL" and "Fetch page content from URL" may be restricted by the target site's cross-origin policy.
